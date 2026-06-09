@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PROBIOLIM — Soluciones Químicas Industriales</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --azul: #1B3D6F;
+      --verde: #3A7D2C;
+      --gris: #444444;
+      --gris-claro: #F7F8FA;
+      --blanco: #ffffff;
+      --borde: #E2E6EA;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--gris);
+      background: var(--blanco);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--blanco);
+      border-bottom: 1px solid var(--borde);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6vw; height: 68px;
+    }
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 1.4rem; letter-spacing: -0.5px;
+    }
+    .nav-logo span:first-child { color: var(--azul); }
+    .nav-logo span:last-child  { color: var(--verde); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--gris);
+      font-size: 0.88rem; font-weight: 500; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--azul); }
+    .nav-cta {
+      background: var(--verde); color: var(--blanco);
+      padding: 0.5rem 1.25rem; border-radius: 6px;
+      font-size: 0.88rem; font-weight: 600; text-decoration: none;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: #2e6422; }
+
+    /* ── HERO ── */
+    #inicio {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--azul) 0%, #0f2444 100%);
+      display: flex; align-items: center;
+      padding: 100px 6vw 80px;
+      position: relative; overflow: hidden;
+    }
+    #inicio::before {
+      content: '';
+      position: absolute; top: -80px; right: -80px;
+      width: 520px; height: 520px; border-radius: 50%;
+      background: rgba(58,125,44,0.12);
+      pointer-events: none;
+    }
+    #inicio::after {
+      content: '';
+      position: absolute; bottom: -120px; left: 30%;
+      width: 380px; height: 380px; border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 680px; position: relative; z-index: 1;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: rgba(58,125,44,0.25);
+      color: #7ed96a;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; padding: 0.35rem 0.9rem;
+      border-radius: 100px; margin-bottom: 1.5rem;
+      border: 1px solid rgba(58,125,44,0.4);
+    }
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--blanco); line-height: 1.15; margin-bottom: 1.5rem;
+    }
+    .hero-title em {
+      font-style: normal; color: #7ed96a;
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: rgba(255,255,255,0.75);
+      max-width: 540px; margin-bottom: 2.5rem; line-height: 1.75;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--verde); color: var(--blanco);
+      padding: 0.85rem 2rem; border-radius: 8px;
+      font-weight: 700; font-size: 0.95rem; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: #2e6422; transform: translateY(-1px); }
+    .btn-ghost {
+      border: 1.5px solid rgba(255,255,255,0.35); color: var(--blanco);
+      padding: 0.85rem 2rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-ghost:hover { border-color: var(--blanco); background: rgba(255,255,255,0.07); }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .stat-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 2rem; color: #7ed96a;
+    }
+    .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.55); margin-top: 0.15rem; }
+
+    /* ── SECCIONES GENERALES ── */
+    section { padding: 96px 6vw; }
+    .section-eyebrow {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--verde); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: var(--azul); line-height: 1.2; margin-bottom: 1.25rem;
+    }
+    .section-sub {
+      font-size: 1rem; color: #666; max-width: 560px; line-height: 1.75;
+    }
+    .section-header { margin-bottom: 3.5rem; }
+
+    /* ── NOSOTROS ── */
+    #nosotros { background: var(--gris-claro); }
+    .nosotros-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; align-items: center;
+    }
+    .nosotros-text p {
+      margin-bottom: 1.1rem; font-size: 1rem; line-height: 1.8; color: #555;
+    }
+    .nosotros-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    }
+    .nos-card {
+      background: var(--blanco);
+      border: 1px solid var(--borde);
+      border-radius: 12px; padding: 1.5rem;
+      border-top: 3px solid var(--verde);
+    }
+    .nos-card-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 2rem; color: var(--azul); opacity: 0.15;
+    }
+    .nos-card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.95rem; color: var(--azul); margin: 0.5rem 0 0.4rem;
+    }
+    .nos-card p { font-size: 0.85rem; color: #777; line-height: 1.6; }
+
+    /* ── CAPACIDADES ── */
+    #capacidades { background: var(--blanco); }
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .cap-card {
+      border: 1px solid var(--borde); border-radius: 14px;
+      padding: 2rem 1.75rem; transition: box-shadow .2s, transform .2s;
+      position: relative; overflow: hidden;
+    }
+    .cap-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--azul), var(--verde));
+    }
+    .cap-card:hover { box-shadow: 0 8px 32px rgba(27,61,111,0.1); transform: translateY(-3px); }
+    .cap-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .cap-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 1rem; color: var(--azul); margin-bottom: 0.6rem;
+    }
+    .cap-text { font-size: 0.875rem; color: #666; line-height: 1.7; }
+
+    /* ── DIFERENCIADORES ── */
+    #diferenciadores { background: var(--azul); }
+    #diferenciadores .section-title { color: var(--blanco); }
+    #diferenciadores .section-eyebrow { color: #7ed96a; }
+    #diferenciadores .section-sub { color: rgba(255,255,255,0.65); }
+    .dif-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .dif-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 1.75rem;
+      transition: background .2s;
+    }
+    .dif-card:hover { background: rgba(255,255,255,0.1); }
+    .dif-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+    .dif-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.95rem;
+      color: var(--blanco); margin-bottom: 0.5rem;
+    }
+    .dif-text { font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
+
+    /* ── PROCESO ── */
+    #proceso { background: var(--gris-claro); }
+    .proceso-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      position: relative; margin-top: 1rem;
+    }
+    .proceso-steps::before {
+      content: ''; position: absolute;
+      top: 28px; left: 12.5%; right: 12.5%; height: 2px;
+      background: linear-gradient(90deg, var(--verde), var(--azul));
+      z-index: 0;
+    }
+    .paso {
+      text-align: center; padding: 0 1rem; position: relative; z-index: 1;
+    }
+    .paso-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--azul); color: var(--blanco);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+      border: 3px solid var(--blanco);
+      box-shadow: 0 0 0 3px var(--verde);
+    }
+    .paso-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.9rem; color: var(--azul); margin-bottom: 0.5rem;
+    }
+    .paso-text { font-size: 0.82rem; color: #777; line-height: 1.6; }
+    .proceso-cierre {
+      text-align: center; margin-top: 3.5rem;
+      font-size: 1rem; color: #555; font-style: italic;
+    }
+    .proceso-cierre strong { color: var(--azul); font-style: normal; }
+
+    /* ── COTIZACIÓN ── */
+    #cotizacion { background: var(--blanco); }
+    .cotizacion-inner {
+      display: grid; grid-template-columns: 1fr 1.3fr; gap: 5vw; align-items: start;
+    }
+    .cot-info p { font-size: 0.95rem; color: #666; line-height: 1.8; margin-bottom: 1.5rem; }
+    .cot-badge {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .cot-badge-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(58,125,44,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .cot-badge-text { font-size: 0.88rem; color: #555; line-height: 1.5; }
+    .cot-badge-text strong { color: var(--azul); font-weight: 600; }
+
+    .form-card {
+      background: var(--gris-claro);
+      border: 1px solid var(--borde);
+      border-radius: 16px; padding: 2.5rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label {
+      display: block; font-size: 0.82rem; font-weight: 600;
+      color: var(--azul); margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 0.7rem 1rem;
+      border: 1.5px solid var(--borde); border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--gris);
+      background: var(--blanco); transition: border-color .2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--azul); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%; padding: 1rem;
+      background: var(--verde); color: var(--blanco);
+      border: none; border-radius: 8px; cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 1rem;
+      transition: background .2s, transform .15s;
+    }
+    .form-submit:hover { background: #2e6422; transform: translateY(-1px); }
+    .form-note {
+      text-align: center; font-size: 0.78rem; color: #999; margin-top: 0.75rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f2444; color: rgba(255,255,255,0.65);
+      padding: 4rem 6vw 2rem;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 3rem;
+    }
+    .footer-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 1.3rem; margin-bottom: 0.75rem;
+    }
+    .footer-logo span:first-child { color: var(--blanco); }
+    .footer-logo span:last-child  { color: #7ed96a; }
+    .footer-desc { font-size: 0.85rem; line-height: 1.75; max-width: 300px; }
+    .footer-col h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.85rem;
+      color: var(--blanco); margin-bottom: 1rem; letter-spacing: 0.5px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.55); text-decoration: none;
+      font-size: 0.85rem; transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: #7ed96a; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem; text-align: center;
+      font-size: 0.78rem; color: rgba(255,255,255,0.3);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nosotros-grid,
+      .cotizacion-inner,
+      .footer-grid { grid-template-columns: 1fr; }
+      .proceso-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .proceso-steps::before { display: none; }
+    }
+    @media (max-width: 600px) {
+      nav { padding: 0 4vw; }
+      .nav-links { display: none; }
+      section { padding: 64px 5vw; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+      .proceso-steps { grid-template-columns: 1fr; }
+      .nosotros-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"><span>PROBIO</span><span>LIM</span></div>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#capacidades">Capacidades</a></li>
+    <li><a href="#proceso">Cómo trabajamos</a></li>
+    <li><a href="#cotizacion">Cotizar</a></li>
+  </ul>
+  <a href="#cotizacion" class="nav-cta">Solicitar cotización</a>
+</nav>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Manufactura química · México</span>
+    <h1 class="hero-title">
+      Tu producto,<br>nuestra fórmula.<br>
+      <em>Tu marca, nuestra manufactura.</em>
+    </h1>
+    <p class="hero-sub">
+      En PROBIOLIM fabricamos soluciones químicas industriales para marcas que quieren crecer sin invertir en planta propia. Somos tu socio de manufactura en México.
+    </p>
+    <div class="hero-btns">
+      <a href="#cotizacion" class="btn-primary">Solicitar cotización →</a>
+      <a href="#capacidades" class="btn-ghost">Ver capacidades</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Marca blanca disponible</div>
+      </div>
+      <div>
+        <div class="stat-num">&lt;24h</div>
+        <div class="stat-label">Tiempo de respuesta</div>
+      </div>
+      <div>
+        <div class="stat-num">MX</div>
+        <div class="stat-label">Empresa 100% mexicana</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="nosotros-grid">
+    <div class="nosotros-text">
+      <p class="section-eyebrow">Quiénes somos</p>
+      <h2 class="section-title">Más que un proveedor,<br>un socio de manufactura</h2>
+      <p>PROBIOLIM es una empresa mexicana especializada en la fabricación de productos químicos industriales y de limpieza. Trabajamos con marcas que necesitan un aliado confiable para producir, formular y escalar sus productos sin los costos de tener una planta propia.</p>
+      <p>Desde Ciudad de México operamos para clientes en todo el país, con procesos de calidad, tiempos de entrega cumplidos y la flexibilidad que solo una empresa comprometida puede ofrecer.</p>
+    </div>
+    <div class="nosotros-cards">
+      <div class="nos-card">
+        <div class="nos-card-num">01</div>
+        <div class="nos-card-title">Formulación propia</div>
+        <p>Fórmulas desarrolladas y probadas en campo. No experimentamos con tu producto.</p>
+      </div>
+      <div class="nos-card">
+        <div class="nos-card-num">02</div>
+        <div class="nos-card-title">Producción flexible</div>
+        <p>Desde lotes pequeños hasta volúmenes industriales. Crecemos a tu ritmo.</p>
+      </div>
+      <div class="nos-card">
+        <div class="nos-card-num">03</div>
+        <div class="nos-card-num"></div>
+        <div class="nos-card-title">Marca blanca</div>
+        <p>Fabricamos con tu marca y etiqueta. Total confidencialidad garantizada.</p>
+      </div>
+      <div class="nos-card">
+        <div class="nos-card-num">04</div>
+        <div class="nos-card-title">Entrega nacional</div>
+        <p>Distribuimos a toda la República. Producto terminado, listo para vender.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPACIDADES -->
+<section id="capacidades">
+  <div class="section-header">
+    <p class="section-eyebrow">Qué fabricamos</p>
+    <h2 class="section-title">Nuestras capacidades de manufactura</h2>
+    <p class="section-sub">Soluciones químicas para industria, mantenimiento y hogar. Todas bajo tu marca.</p>
+  </div>
+  <div class="cap-grid">
+    <div class="cap-card">
+      <div class="cap-icon">⚙️</div>
+      <div class="cap-title">Lubricantes y antidesgaste</div>
+      <p class="cap-text">Formulaciones de alto rendimiento para maquinaria industrial, equipos automotrices y flotillas. Protegen, reducen fricción y extienden la vida útil de los equipos.</p>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon">🧴</div>
+      <div class="cap-title">Desengrasantes industriales</div>
+      <p class="cap-text">Productos biodegradables y de alta eficiencia para limpieza de superficies metálicas, maquinaria y equipos en entornos industriales y de mantenimiento.</p>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon">⚡</div>
+      <div class="cap-title">Limpiadores dieléctricos</div>
+      <p class="cap-text">Soluciones especializadas para limpieza de componentes eléctricos y electrónicos sin riesgo de daño. Ideales para mantenimiento preventivo industrial.</p>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon">🧹</div>
+      <div class="cap-title">Limpiadores multiusos</div>
+      <p class="cap-text">Fórmulas versátiles para uso industrial y doméstico. Alta concentración, rendimiento comprobado y adaptables a la imagen de tu marca.</p>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon">🔬</div>
+      <div class="cap-title">Formulación a medida</div>
+      <p class="cap-text">¿Tienes una necesidad específica? Desarrollamos fórmulas personalizadas según tu aplicación, mercado y requerimientos técnicos particulares.</p>
+    </div>
+    <div class="cap-card" style="background: var(--azul); border-color: var(--azul);">
+      <div class="cap-icon">📦</div>
+      <div class="cap-title" style="color: #fff;">¿No ves lo que necesitas?</div>
+      <p class="cap-text" style="color: rgba(255,255,255,0.7);">Cuéntanos tu proyecto. Si trabajamos con química, encontramos la solución.</p>
+      <a href="#cotizacion" style="display:inline-block; margin-top:1rem; color:#7ed96a; font-weight:600; font-size:0.88rem; text-decoration:none;">Hablemos →</a>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIADORES -->
+<section id="diferenciadores">
+  <div class="section-header">
+    <p class="section-eyebrow">Por qué elegirnos</p>
+    <h2 class="section-title">Lo que nos hace diferentes</h2>
+    <p class="section-sub">No solo fabricamos. Nos involucramos en el éxito de tu marca.</p>
+  </div>
+  <div class="dif-grid">
+    <div class="dif-card">
+      <div class="dif-icon">🏭</div>
+      <div class="dif-title">Fabricación flexible</div>
+      <p class="dif-text">Producimos desde lotes pequeños hasta volúmenes industriales. Crecemos contigo sin pedirte compromisos que no puedas cumplir.</p>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">🤝</div>
+      <div class="dif-title">Marca blanca total</div>
+      <p class="dif-text">Fabricamos con tu marca, tu etiqueta y tu identidad. Nadie sabrá quién produce, a menos que tú lo decidas.</p>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">⏱️</div>
+      <div class="dif-title">Tiempos cumplidos</div>
+      <p class="dif-text">Entendemos que tu negocio no puede parar. Nos comprometemos con fechas reales y las cumplimos.</p>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">🔬</div>
+      <div class="dif-title">Fórmulas propias</div>
+      <p class="dif-text">Contamos con formulaciones desarrolladas y probadas en campo. No experimentamos con tu producto ni con tu cliente.</p>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">📦</div>
+      <div class="dif-title">Listo para distribuir</div>
+      <p class="dif-text">Entregamos producto terminado, envasado y etiquetado. Listo para llegar al cliente final o a tu red de distribución.</p>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">🇲🇽</div>
+      <div class="dif-title">100% mexicano</div>
+      <p class="dif-text">Empresa mexicana, con proveedores mexicanos y compromiso con la industria nacional. Apoyamos lo que construimos juntos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="section-header" style="text-align:center;">
+    <p class="section-eyebrow">Cómo trabajamos</p>
+    <h2 class="section-title">Así de simple es trabajar con nosotros</h2>
+  </div>
+  <div class="proceso-steps">
+    <div class="paso">
+      <div class="paso-num">1</div>
+      <div class="paso-title">Nos contactas</div>
+      <p class="paso-text">Cuéntanos qué necesitas fabricar, en qué volumen y bajo qué marca.</p>
+    </div>
+    <div class="paso">
+      <div class="paso-num">2</div>
+      <div class="paso-title">Cotizamos</div>
+      <p class="paso-text">Te enviamos una propuesta de formulación y cotización en menos de 24 horas.</p>
+    </div>
+    <div class="paso">
+      <div class="paso-num">3</div>
+      <div class="paso-title">Aprobamos muestra</div>
+      <p class="paso-text">Validamos la fórmula contigo y definimos condiciones comerciales.</p>
+    </div>
+    <div class="paso">
+      <div class="paso-num">4</div>
+      <div class="paso-title">Producimos y entregamos</div>
+      <p class="paso-text">Tu producto terminado, con tu marca, listo para vender.</p>
+    </div>
+  </div>
+  <p class="proceso-cierre">
+    Sin burocracia, sin letra chica. <strong>Solo química que funciona y un equipo que responde.</strong>
+  </p>
+</section>
+
+<!-- COTIZACIÓN -->
+<section id="cotizacion">
+  <div class="cotizacion-inner">
+    <div class="cot-info">
+      <p class="section-eyebrow">Cotización sin costo</p>
+      <h2 class="section-title">¿Listo para fabricar tu producto?</h2>
+      <p>Cuéntanos qué necesitas y te respondemos en menos de 24 horas con una propuesta inicial sin costo ni compromiso.</p>
+      <div class="cot-badge">
+        <div class="cot-badge-icon">⚡</div>
+        <div class="cot-badge-text"><strong>Respuesta en menos de 24 horas</strong><br>Días hábiles, de lunes a viernes.</div>
+      </div>
+      <div class="cot-badge">
+        <div class="cot-badge-icon">🔒</div>
+        <div class="cot-badge-text"><strong>Total confidencialidad</strong><br>Tu fórmula y tu marca son tuyas. Siempre.</div>
+      </div>
+      <div class="cot-badge">
+        <div class="cot-badge-icon">📦</div>
+        <div class="cot-badge-text"><strong>Sin mínimos absurdos</strong><br>Trabajamos con volúmenes desde lotes pequeños.</div>
+      </div>
+    </div>
+    <div class="form-card">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre completo *</label>
+          <input type="text" placeholder="Tu nombre" />
+        </div>
+        <div class="form-group">
+          <label>Empresa *</label>
+          <input type="text" placeholder="Nombre de tu empresa" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Correo electrónico *</label>
+          <input type="email" placeholder="correo@empresa.com" />
+        </div>
+        <div class="form-group">
+          <label>Teléfono / WhatsApp *</label>
+          <input type="tel" placeholder="+52 55 0000 0000" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Tipo de producto que necesitas fabricar *</label>
+        <select>
+          <option value="">Selecciona una opción</option>
+          <option>Lubricante / antidesgaste</option>
+          <option>Desengrasante industrial</option>
+          <option>Limpiador dieléctrico</option>
+          <option>Limpiador multiusos</option>
+          <option>Formulación a medida</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Volumen mensual aproximado</label>
+        <select>
+          <option value="">Selecciona un rango</option>
+          <option>Menos de 100 litros</option>
+          <option>100 — 500 litros</option>
+          <option>500 — 2,000 litros</option>
+          <option>Más de 2,000 litros</option>
+          <option>No lo sé todavía</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Cuéntanos más sobre tu proyecto</label>
+        <textarea placeholder="Describe tu necesidad, aplicación, mercado objetivo, o cualquier detalle relevante..."></textarea>
+      </div>
+      <button class="form-submit">Enviar solicitud →</button>
+      <p class="form-note">También puedes escribirnos por WhatsApp. Respondemos en horario de oficina.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><span>PROBIO</span><span>LIM</span></div>
+      <p class="footer-desc">Manufactura química industrial para marcas mexicanas que quieren crecer. Ciudad de México · Nacional.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#capacidades">Capacidades</a></li>
+        <li><a href="#proceso">Cómo trabajamos</a></li>
+        <li><a href="#cotizacion">Cotizar</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="mailto:contacto@probiolim.com.mx">contacto@probiolim.com.mx</a></li>
+        <li><a href="#">WhatsApp</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 PROBIOLIM — Soluciones Químicas Industriales. Todos los derechos reservados.
+  </div>
+</footer>
+
+</body>
+</html>
